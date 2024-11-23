@@ -1,0 +1,70 @@
+<div class="form-container">
+  <h2 class="form-title">{{ isEdit() ? 'Edit Employee Details' : 'Add Employee Details' }}</h2>
+  <form [formGroup]="employeeform" (ngSubmit)="submit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter Name">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Position</mat-label>
+      <mat-select formControlName="role" required>
+        <mat-option *ngFor="let role of roles()" [value]="role">
+          {{role}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="pickerFrom" formControlName="tenureFrom">
+      <mat-datepicker-toggle color="primary" matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+      <mat-datepicker #pickerFrom (opened)="onDatepickerOpened(tenureFrom)">
+        <mat-datepicker-actions class="tenure-from">
+          <div class="picker-from-custom-btn">
+            <button mat-raised-button *ngFor="let button of fromPickerButtons; let i = index"
+              [ngClass]="selectedFromIndex() === i ? 'primary' : 'secondary'"
+              (click)="button.action(); selectedFromIndex.set(i)">
+              {{ button.label }}
+            </button>
+          </div>
+          <div class="selected-date"><mat-icon color="primary">calendar_today</mat-icon>{{tenureFrom.value| date: 'd MMM y'}}</div>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Save</button>
+        </mat-datepicker-actions>
+
+      </mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="pickerTo" [min]="tenureFrom.value" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="tenureTodate">
+      <mat-datepicker-toggle color="primary" matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+      <mat-datepicker #pickerTo (opened)="onDatepickerOpened()">
+        <mat-datepicker-actions class="tenure-from">
+          <div class="picker-to-custom-btn">
+
+            <button mat-button *ngFor="let button of toPickerButtons; let i = index"
+              [ngClass]="selectedToIndex() === i ? 'primary' : 'secondary'"
+              (click)="button.action(); selectedToIndex.set(i)">
+              {{ button.label }}
+            </button>
+          </div>
+          <div class="selected-date"><mat-icon color="primary">calendar_today</mat-icon>{{tenureTodate !== "No Date" ?
+            (tenureTodate | date: 'd MMM y') : tenureTodate }}</div>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Save</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-raised-button color="secondary" type="button" (click)="resetForm()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="employeeform.invalid">
+        {{ isEdit() ? 'Update' : 'Add' }}
+      </button>
+    </div>
+  </form>
+  <div class="back-list">
+    <a style="cursor: pointer !important;" (click)="routeToEmployeeList()"><mat-icon color="primary" >keyboard_backspace</mat-icon>Back To Employees List</a>
+  </div>
+</div>

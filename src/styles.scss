@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-mdc-raised-button:disabled {
+    background-color: #c2185b !important;
+    opacity: .6 !important;
+}
+
+
+.custom-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+  }
+  
+  .top-actions {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .bottom-actions {
+    border-top: 1px solid #ddd;
+    margin-top: 8px;
+  }
+  
+  mat-calendar {
+    margin: 16px 0;
+  }
+  // #picker1{
+    .mat-datepicker-content .mat-calendar {
+      position: relative !important;
+      width: 380px !important;
+      height: 465px !important;
+      top: 60px !important;
+      .selected-date{
+        padding-bottom: 5px;
+        mat-icon{
+            position: relative !important;
+        right: 10px !important;
+        top: 5px !important;
+        }
+      }
+  // }
+  }
+  .mat-mdc-select-arrow , .mat-mdc-icon-button svg{
+    color: #c2185b !important;
+  }
+  // .mat-mdc-icon-button svg {

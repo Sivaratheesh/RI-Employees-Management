@@ -1,0 +1,83 @@
+
+  <div class="header">
+    <h1>Employee List</h1>
+    <button mat-raised-button color="primary"  routerLink="/add">Add Employee</button>
+  <div class="employee-list">
+    <div>
+      <h4>Current Employees</h4> 
+      <div  class="employee" *ngFor="let employee of currentEmployees(); trackBy: trackByEmployeeID">
+        <div class="employee-details">
+          <p class="employee-name">{{ employee.name }}</p>
+          <p class="employee-role">{{ employee.role }}</p>
+          <p class="employee-dates">
+            <span *ngIf="employee.tenureTo === '';else elseTemplate"> From
+              {{ employee.tenureFrom | date: 'd MMM, y' }}
+
+            </span>
+            <ng-template #elseTemplate>
+            <span >
+              {{ employee.tenureFrom | date: 'd MMM, y' }} - {{ employee.tenureTo | date: 'd MMM, y' }}
+
+            </span>
+          </ng-template>
+            <span class="employee-action">
+              <button (click)="editEmployee(employee)" mat-icon-button class="edit-btn">
+                <mat-icon color="primary">edit</mat-icon>
+              </button>
+              <button (click)="deleteEmployee(employee.id)" mat-icon-button class="delete-btn">
+                <mat-icon color="primary">delete</mat-icon>
+              </button>
+            </span>
+  
+          </p>
+         
+        </div>
+    
+      </div>
+    </div>
+  
+    <div>
+      <h4> Previous Employees</h4> 
+     
+      <div  class="employee" *ngFor="let employee of previousEmployees(); trackBy: trackByEmployeeID">
+        <div class="employee-details">
+          <p class="employee-name">{{ employee.name }}</p>
+          <p class="employee-role">{{ employee.role }}</p>
+          <p class="employee-dates">
+            <span *ngIf="employee.tenureTo === '';else elseTemplate"> From
+              {{ employee.tenureFrom | date: 'd MMM, y' }}
+
+            </span>
+            <ng-template #elseTemplate>
+            <span >
+              {{ employee.tenureFrom | date: 'd MMM, y' }} - {{ employee.tenureTo | date: 'd MMM, y' }}
+
+            </span>
+          </ng-template>
+            <span class="employee-action">
+              <button (click)="editEmployee(employee)" mat-icon-button class="edit-btn">
+                <mat-icon color="primary">edit</mat-icon>
+              </button>
+              <button (click)="deleteEmployee(employee.id)" mat-icon-button class="delete-btn">
+                <mat-icon color="primary">delete</mat-icon>
+              </button>
+            </span>
+          </p>
+          
+        </div>
+  
+    
+      </div>
+    </div>
+  
+  </div>
+
+  <div class="confirmation-dialog" *ngIf="isDialogVisible()">
+    <div class="dialog-content">
+      <p>Are you sure you want to delete this remove?</p>
+      <div class="dialog-actions">
+        <button color="primary" mat-raised-button (click)="confirmDelete()">Yes</button>
+        <button color="secondary" mat-raised-button (click)="isDialogVisible.set(false)">No</button>
+      </div>
+    </div>
+  </div>

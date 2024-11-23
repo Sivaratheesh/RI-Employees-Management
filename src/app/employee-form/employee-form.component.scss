@@ -1,0 +1,127 @@
+.form-container {
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    align-items: center;
+    margin: auto;
+    display: flex;
+  flex-direction: column;
+  height: 100%; 
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .form-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  .form-container{
+    form{
+        // flex: 1; 
+  background-color: #f9f9f9;
+  padding: 16px;
+  overflow-y: auto; 
+    }
+  }
+  .picker-from-custom-btn{
+    position: absolute !important;
+    top: 0 !important;
+    left: 0;
+    right: 0;
+    display: inline-table;
+
+    button {
+      width: 160px;
+      margin: 10px;
+      text-align: center;
+    }
+  }
+
+  .selected-date{
+    margin: auto;
+    position: relative;
+    right: 33px;
+    padding-bottom: 5px;
+    mat-icon{
+        position: relative !important;
+    right: 10px !important;
+    top: 5px !important;
+    }
+  }
+  .picker-to-custom-btn{
+    position: absolute ;
+    top: 20px;
+    left: 0;
+    right: 0;
+    display: inline-table;
+
+    button {
+      width: 160px;
+      margin: 10px;
+      text-align: center;
+    }
+  }
+
+  .mat-button.mat-primary {
+    font-weight: bold;
+  }
+  
+  .mat-button.mat-basic {
+    background-color: #c2185b;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+
+
+  /* Styling for the active button */
+.active-button {
+  background-color: #2c3e50 !important; /* Darker primary color */
+  color: #ecf0f1 !important; /* Lighter text for contrast */
+  font-weight: bold;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+// /* Add hover effects for all buttons */
+// button:hover {
+//   background-color: #5e3441 !important;
+// }
+
+/* Optional: Apply consistent padding and spacing */
+button {
+  margin: 5px;
+}
+.primary{
+
+  background-color: #c2185b !important; 
+}
+.secondary{
+  background-color: #c2185b !important;
+  opacity: 0.4;
+}
+.back-list{
+  width: 100%;
+  a{
+    color: rgb(26, 26, 224);
+    // text-decoration: none;
+    mat-icon{
+      position: relative;
+      top: 7px;
+      cursor: pointer !important;
+    }
+}
+
+}
