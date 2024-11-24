@@ -1,5 +1,16 @@
 <div class="form-container">
   <h2 class="form-title">{{ isEdit() ? 'Edit Employee Details' : 'Add Employee Details' }}</h2>
+  <div class="validation-warning" *ngIf="showWarning()">
+    <div class="warning-content">
+      <span class="warning-icon">⚠️</span>
+      <span class="warning-text">
+        Pleae check date fields range!.
+      </span>
+      <button class="close-button" (click)="closeWarning()">
+        <mat-icon color="primary">close</mat-icon>
+      </button>
+    </div>
+  </div>
   <form [formGroup]="employeeform" (ngSubmit)="submit()">
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Name</mat-label>
@@ -14,7 +25,7 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Start Date</mat-label>
+      <mat-label>From</mat-label>
       <input matInput [matDatepicker]="pickerFrom" formControlName="tenureFrom">
       <mat-datepicker-toggle color="primary" matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
       <mat-datepicker #pickerFrom (opened)="onDatepickerOpened(tenureFrom)">
@@ -35,7 +46,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>End Date</mat-label>
+      <mat-label>To</mat-label>
       <input matInput [matDatepicker]="pickerTo" [min]="tenureFrom.value" [ngModelOptions]="{standalone: true}"
         [(ngModel)]="tenureTodate">
       <mat-datepicker-toggle color="primary" matSuffix [for]="pickerTo"></mat-datepicker-toggle>

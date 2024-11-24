@@ -34,7 +34,7 @@ export class EmployeeFormComponent {
 
   @ViewChild('pickerFrom') pickerFrom!: MatDatepicker<Date>;
   @ViewChild('pickerTo') pickerTo!: MatDatepicker<Date>;
-
+  showWarning = signal(false);
   constructor(private fb: FormBuilder, private employeeService: EmployeeService,
     private router: Router
   ) {
@@ -55,16 +55,20 @@ export class EmployeeFormComponent {
   }
 
   public async submit() {
-    if (this.isEdit()) {
-      this.employeeform.value.tenureTo = this.tenureTodate === "No Date" ? "" : this.tenureTodate;
-      await this.employeeService.updateEmployee(this.employeeform.value);
-    } else {
-      this.employeeform.value.id = uuidv4()
-      this.employeeform.value.tenureTo = this.tenureTodate === "No Date" ? "" : this.tenureTodate;
-      await this.employeeService.addEmployee(this.employeeform.value);
+    this.employeeform.value.tenureTo = this.tenureTodate === "No Date" ? "" : this.tenureTodate;
+    if((this.employeeform.value.tenureTo && this.employeeform.value.tenureTo > this.employeeform.value.tenureFrom) || this.employeeform.value.tenureTo === ""){
+      if (this.isEdit()) {
+        await this.employeeService.updateEmployee(this.employeeform.value);
+      } else {
+        this.employeeform.value.id = uuidv4()
+        await this.employeeService.addEmployee(this.employeeform.value);
+      }
+      this.resetForm();
+      this.router.navigate(['/'])
+    }else{
+      this.showWarning.set(true);
+      return;
     }
-    this.resetForm();
-    this.router.navigate(['/'])
   }
 
   public resetForm() {
@@ -155,11 +159,14 @@ export class EmployeeFormComponent {
 
   public NoDate() {
     this.tenureTodate = "No Date";
-    console.log(this.tenureTodate)
     this.pickerTo.close();
   }
   public routeToEmployeeList() {
     this.resetForm();
     this.router.navigate(['/'])
+  }
+
+  public closeWarning(){
+    this.showWarning.set(false);
   }
 }

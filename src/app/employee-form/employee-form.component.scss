@@ -125,3 +125,82 @@ button {
 }
 
 }
+
+.validation-warning {
+  background-color: #fff3cd;
+  color: #856404; 
+  border: 1px solid #ffeeba; 
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; 
+}
+
+.warning-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.warning-icon {
+  font-size: 20px;
+}
+
+.warning-text {
+  flex: 1; 
+  font-size: 16px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #856404;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+    left: 22px;
+    bottom: 18px;
+}
+
+
+
+.responsive-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 500px; 
+  margin: 0 auto; 
+}
+
+.full-width {
+  width: 100%;
+}
+
+.submit-button {
+  align-self: flex-start; 
+}
+
+
+@media (max-width: 600px) {
+  .validation-warning {
+    flex-direction: column; 
+    align-items: flex-start; 
+  }
+
+  .warning-text {
+    font-size: 14px; 
+  }
+
+  .close-button {
+    font-size: 18px; 
+  }
+
+  .submit-button {
+    width: 100%; 
+  }
+}

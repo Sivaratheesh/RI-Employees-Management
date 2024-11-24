@@ -73,14 +73,14 @@
       </div>
       <div *ngIf="previousEmployees().length === 0">
         <mat-icon color="primary">search</mat-icon> <h6>Previous employees not found</h6>
-              </div>
+      </div>
     </div>
   
   </div>
 
   <div class="confirmation-dialog" *ngIf="isDialogVisible()">
     <div class="dialog-content">
-      <p>Are you sure you want to delete this remove?</p>
+      <p>Are you sure you want to remove this employee?</p>
       <div class="dialog-actions">
         <button color="primary" mat-raised-button (click)="confirmDelete()">Yes</button>
         <button color="secondary" mat-raised-button (click)="isDialogVisible.set(false)">No</button>
